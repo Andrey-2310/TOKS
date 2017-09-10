@@ -15,7 +15,6 @@ public class PortReader implements SerialPortEventListener {
     public void serialEvent(SerialPortEvent event) {
         if (event.isRXCHAR() && event.getEventValue() > 0) {
             try {
-                //Получаем ответ от устройства, обрабатываем данные и т.д.
                 port.setData(port.getPort().readString(event.getEventValue()));
             } catch (SerialPortException ex) {
                 ex.printStackTrace();

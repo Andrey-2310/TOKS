@@ -1,6 +1,7 @@
 package transfering;
 
 import com.mifmif.common.regex.Generex;
+import enumeration.Parity;
 import jdk.nashorn.internal.objects.annotations.Getter;
 import jssc.*;
 import lombok.AllArgsConstructor;
@@ -11,6 +12,7 @@ import ui.dataListener.DataListener;
 
 import java.security.SecureRandom;
 import java.util.Arrays;
+import java.util.Map;
 
 @ToString
 @lombok.Getter
@@ -19,17 +21,16 @@ public class ComPort {
 
     private SerialPort port;
     private int portSpeed;
-    private int portParity;
+    private Parity portParity;
     private String data;
 
     private DataListener dataListener;
     private final Generex generex = new Generex("[a-zA-Z0-9]{3,10}");
 
-
     public ComPort(String portName) {
         port = new SerialPort(portName);
         portSpeed = SerialPort.BAUDRATE_9600;
-        portParity = SerialPort.PARITY_NONE;
+        portParity = Parity.NONE;
         openPort();
     }
 
@@ -38,7 +39,7 @@ public class ComPort {
         dataListener.update(data);
     }
 
-    public ComPort setDataListener(DataListener dataListener){
+    public ComPort setDataListener(DataListener dataListener) {
         this.dataListener = dataListener;
         return this;
     }
@@ -57,10 +58,9 @@ public class ComPort {
             this.port.setParams(portSpeed,
                     SerialPort.DATABITS_8,
                     SerialPort.STOPBITS_1,
-                    portParity);
+                    portParity.getAmountsOfBits());
             this.port.setFlowControlMode(SerialPort.FLOWCONTROL_RTSCTS_IN |
                     SerialPort.FLOWCONTROL_RTSCTS_OUT);
-            //Устанавливаем ивент лисенер и маску
             this.port.addEventListener(new PortReader(this), SerialPort.MASK_RXCHAR);
         } catch (SerialPortException e) {
             e.printStackTrace();
@@ -84,15 +84,9 @@ public class ComPort {
         }
     }
 
-//    public void receiveBytes() throws SerialPortException, SerialPortTimeoutException {
-//        this.data = this.port.readString();
-//
-//    }
-
     public void generateData() {
-        this.data = generex.random(1, 10);
+        setData(generex.random(1, 10));
     }
-
 
 }
 
