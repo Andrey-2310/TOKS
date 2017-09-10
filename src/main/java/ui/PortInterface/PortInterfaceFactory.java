@@ -9,7 +9,7 @@ public enum PortInterfaceFactory implements PortFactoryInterface {
             return mapPort.get(name);
         }
     };
-    private static Map<String, PortInterface> mapPort = new HashMap<String, PortInterface>();
+    private static Map<String, PortInterface> mapPort = new HashMap<>();
 
     public static void fulfillMapPort() {
         mapPort.put("COM1", new PortInterface("COM1").concreteFixing(0));

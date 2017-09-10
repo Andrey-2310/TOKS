@@ -5,7 +5,7 @@ import ui.PortInterface.PortInterface;
 
 import java.util.List;
 
-public class ModuleController {
+class ModuleController {
     static void initializeActions(List<PortInterface> ports) {
         for (PortInterface port : ports) {
             initializeOneSide(port);
@@ -22,21 +22,18 @@ public class ModuleController {
     }
 
     private static  void initializeClearButton(PortInterface port){
-        port.getCleanButton().setOnAction(event -> {
-            port.getComPort().setData("");
-        });
+        port.getCleanButton().setOnAction(event ->
+            port.getComPort().setData(""));
     }
 
     private static void initializeGenerateNewStringButton(PortInterface port) {
-        port.getGenerateNewByteButton().setOnAction((event) -> {
-            port.getComPort().generateData();
-        });
+        port.getGenerateNewByteButton().setOnAction((event) ->
+            port.getComPort().generateData());
     }
 
     private static void initializeSendButton(PortInterface port) {
-        port.getSendButton().setOnAction(event -> {
-            port.getComPort().sendBytes();
-        });
+        port.getSendButton().setOnAction(event ->
+            port.getComPort().sendBytes());
 
     }
 
@@ -48,15 +45,13 @@ public class ModuleController {
     }
 
     private static void changeSpeed(PortInterface port) {
-        port.getSpeedComboBox().setOnAction(event -> {
+        port.getSpeedComboBox().setOnAction(event ->
             port.getComPort().setPortSpeed(
-                    Integer.parseInt(port.getSpeedComboBox().getSelectionModel().getSelectedItem().toString()));
-        });
+                    Integer.parseInt(port.getSpeedComboBox().getSelectionModel().getSelectedItem().toString())));
     }
 
     private static void setOnChangeListener(PortInterface port) {
-        port.getCurrentData().textProperty().addListener((observable, oldValue, newValue) -> {
-            port.getComPort().setData(newValue);
-        });
+        port.getCurrentData().textProperty().addListener((observable, oldValue, newValue) ->
+            port.getComPort().setData(newValue));
     }
 }

@@ -1,6 +1,5 @@
 package transfering.portListener;
 
-import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
 import jssc.SerialPortException;

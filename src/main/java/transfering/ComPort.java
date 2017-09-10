@@ -2,17 +2,12 @@ package transfering;
 
 import com.mifmif.common.regex.Generex;
 import enumeration.Parity;
-import jdk.nashorn.internal.objects.annotations.Getter;
 import jssc.*;
-import lombok.AllArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import transfering.portListener.PortReader;
 import ui.dataListener.DataListener;
 
-import java.security.SecureRandom;
-import java.util.Arrays;
-import java.util.Map;
 
 @ToString
 @lombok.Getter

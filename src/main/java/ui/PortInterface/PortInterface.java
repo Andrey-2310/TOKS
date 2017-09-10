@@ -2,7 +2,6 @@ package ui.PortInterface;
 
 import enumeration.Parity;
 import javafx.collections.FXCollections;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -72,21 +71,21 @@ public class PortInterface {
         this.sendButton.setPrefSize(60.0, 25.0);
         this.sendButton.setLayoutY(283.0);
 
-        this.layer= new Pane();
+        this.layer = new Pane();
     }
 
-    public PortInterface concreteFixing(double offset) {
+    PortInterface concreteFixing(double offset) {
         this.sendButton.setLayoutX(210.0 + offset);
         this.speedComboBox.setLayoutX(120.0 + offset);
         this.parityComboBox.setLayoutX(40.0 + offset);
-        this.generateNewByteButton.setLayoutX(40.0+ offset);
+        this.generateNewByteButton.setLayoutX(40.0 + offset);
         this.currentData.setLayoutX(58.0 + offset);
         this.computerBackground.setLayoutX(50.0 + offset);
-        this.cleanButton.setLayoutX(210.0 +offset);
+        this.cleanButton.setLayoutX(210.0 + offset);
         return this;
     }
 
-    public Parent getLayerCustom(){
+    public Parent getLayerCustom() {
         this.layer.getChildren().addAll(
                 parityComboBox,
                 speedComboBox,
@@ -95,7 +94,7 @@ public class PortInterface {
                 computerBackground,
                 currentData,
                 cleanButton
-                );
+        );
         return this.layer;
     }
 }
